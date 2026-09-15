@@ -1,0 +1,23 @@
+# Avocado Kenya — canonical host + performance
+RewriteEngine On
+# force https + www
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^ https://www.avocadokenya.co.ke%{REQUEST_URI} [L,R=301]
+# clean /ar/ works via DirectoryIndex; no trailing-slash issues
+DirectoryIndex index.html
+# compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml text/xml application/xml
+</IfModule>
+# caching
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType video/mp4 "access plus 30 days"
+  ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+AddType video/mp4 .mp4
+AddType image/svg+xml .svg

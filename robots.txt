@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /media/README.txt
+Sitemap: https://www.avocadokenya.co.ke/sitemap.xml
